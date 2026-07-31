@@ -146,8 +146,6 @@ Generates a weekly digest from all research papers and emails the digest automat
 
 # 📂 Repository Contents
 
-# 📂 Repository Contents
-
 ```text
 AI-Research-Assistant-n8n
 │
