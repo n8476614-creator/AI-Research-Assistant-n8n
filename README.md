@@ -177,8 +177,35 @@ AI-Research-Assistant-n8n
 ├── README.md
 ├── Project_Report.pdf
 ├── Architecture_Diagram.png
-└── Presentation.pptx
+├── Presentation.pptx
+└── screenshots/
+    ├── Workflow1.png
+    ├── Workflow2.png
+    ├── Workflow3.png
+    ├── Workflow4.png
+    ├── Workflow5.png
+    └── Workflow6.png
 ```
+
+# 📸 Workflow Screenshots
+
+### Workflow 1 – Research Topic Registration
+![Workflow 1](screenshots/Workflow1.png)
+
+### Workflow 2 – Research Paper Search & Collection
+![Workflow 2](screenshots/Workflow2.png)
+
+### Workflow 3 – AI Summarization & Keyword Extraction
+![Workflow 3](screenshots/Workflow3.png)
+
+### Workflow 4 – Reference Management & Repository
+![Workflow 4](screenshots/Workflow4.png)
+
+### Workflow 5 – Weekly Research Digest & Notifications
+![Workflow 5](screenshots/Workflow5.png)
+
+### Workflow 6 – Error Logging & Email Alert
+![Workflow 6](screenshots/Workflow6.png)
 
 
 # ▶️ How to Run the Project
@@ -249,4 +276,3 @@ AI & Workflow Automation Enthusiast
 Built as part of an AI Automation & n8n Capstone Project.
 
 
-# ⭐ If you found this project useful, consider giving it a star!
