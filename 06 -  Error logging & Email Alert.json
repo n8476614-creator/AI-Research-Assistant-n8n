@@ -1,0 +1,218 @@
+{
+  "name": "06 -  Error logging & Email Alert",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "27cac11b-1646-4b74-9d30-a69b70183d94",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3e3ea01d-365a-4d24-ab39-ebb7d4298a3d",
+              "name": "Workflow Name",
+              "value": "={{$json.workflow.name}}",
+              "type": "string"
+            },
+            {
+              "id": "253891b0-4259-4f44-963b-4fce1aae8f50",
+              "name": "Error Message",
+              "value": "={{ $json.execution.message }}",
+              "type": "string"
+            },
+            {
+              "id": "d231553a-bf00-4f12-a4bb-915f630e4316",
+              "name": "Failed Node",
+              "value": "={{ $json.execution.lastNodeExecuted }}",
+              "type": "string"
+            },
+            {
+              "id": "bb5dc409-244c-4e09-aced-e94947b24032",
+              "name": "TimeStamp",
+              "value": "={{ $now }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        192,
+        0
+      ],
+      "id": "f07abd13-8121-40f2-9f0c-aafd9820a6b4",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1tJ4SppBSUje-xl55DZ2hAB9boLcZuThppEV-EkiwzUY",
+          "mode": "list",
+          "cachedResultName": "Error Log",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1tJ4SppBSUje-xl55DZ2hAB9boLcZuThppEV-EkiwzUY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1tJ4SppBSUje-xl55DZ2hAB9boLcZuThppEV-EkiwzUY/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Workflow name": "={{ $json[\"Workflow Name\"] }}",
+            "Error Message": "={{ $json[\"Error Message\"] }}",
+            "Failed Node": "={{ $json[\"Failed Node\"] }}",
+            "Timestamp": "={{ $now }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Workflow name",
+              "displayName": "Workflow name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Error Message",
+              "displayName": "Error Message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Failed Node",
+              "displayName": "Failed Node",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        384,
+        0
+      ],
+      "id": "f16edd40-ed98-450c-bf27-7719464cadca",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tLjjI6W5fmapwznG",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "n8476614@gmail.com",
+        "subject": "n8n Workflow Failed",
+        "message": "=Workflow: {{$json[\"Workflow Name\"]}}  \n\nFailed Node: {{$json[\"Failed Node\"]}} \n\nError: {{$json[\"Error Message\"]}}  \n\nTime: {{$json[\"Timestamp\"]}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        608,
+        0
+      ],
+      "id": "69bf7297-6891-4c41-910a-14c7b082659d",
+      "name": "Send a message",
+      "webhookId": "b888f797-c643-4696-a2d3-cb5275659d24",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "xD3A5DPCgkEA7Km3",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "1e4b1751-cb74-499e-8f45-b86d3487b867",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0137f43e96cd910131206eac88de83880731c8810dd68103f3f0d09bc4dbd23a"
+  },
+  "nodeGroups": [],
+  "id": "CVJZSjZaEO3dqgM0",
+  "tags": []
+}
