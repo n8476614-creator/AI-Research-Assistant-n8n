@@ -141,7 +141,7 @@ Automatically creates a Google Document containing:
 
 Generates a weekly digest from all research papers and emails the digest automatically using Gmail.
 
-# 💻 Technologies Used
+### 💻 Technologies Used
 
 - n8n
 - OpenAI GPT
