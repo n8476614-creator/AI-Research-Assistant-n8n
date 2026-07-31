@@ -1,0 +1,333 @@
+{
+  "name": "02 - Research Paper Search & Collection",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://api.openalex.org/works",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "search",
+              "value": "={{ $json['Rsearch topic'] }}"
+            },
+            {
+              "name": "per-page",
+              "value": "5"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        448,
+        0
+      ],
+      "id": "6a1e97a4-9af8-42cf-8f5d-f9cb833e48dc",
+      "name": "HTTP Request",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "results",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        672,
+        0
+      ],
+      "id": "1672a297-1a02-4cf5-afb7-1c3772220d24",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ddc74dd6-d0f7-4fa7-acec-38a4ed79d26f",
+              "name": "Paper Title",
+              "value": "={{ $json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "3cea0902-0923-4912-bd3a-485949084b6c",
+              "name": "Publication Year",
+              "value": "={{ $json.publication_year }}",
+              "type": "number"
+            },
+            {
+              "id": "7eaff8c6-944e-4933-8de9-c7cbef671821",
+              "name": "DOI",
+              "value": "={{ $json.doi }}",
+              "type": "string"
+            },
+            {
+              "id": "18b3c87e-aaef-4eae-a824-6e804a3400d3",
+              "name": "Paper URL",
+              "value": "={{ $json.primary_location.landing_page_url }}",
+              "type": "string"
+            },
+            {
+              "id": "44a62ffc-2abe-497c-8ee8-2bec50a2e686",
+              "name": "Relevance Score",
+              "value": "={{ $json.relevance_score }}",
+              "type": "number"
+            },
+            {
+              "id": "a2128694-cf30-4b12-b512-40bacc73bde7",
+              "name": "Authors",
+              "value": "={{ $json.authorships.map(a => a.author.display_name).join(',') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        848,
+        0
+      ],
+      "id": "db490a12-ec57-4586-be6f-8a3e61a42158",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "11Xx-swBvbloYRopaQ-ve7EXo6DuZkcHAG6wjcBe-bFU",
+          "mode": "list",
+          "cachedResultName": "AI Research Assistant Database",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/11Xx-swBvbloYRopaQ-ve7EXo6DuZkcHAG6wjcBe-bFU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 175657094,
+          "mode": "list",
+          "cachedResultName": "Sheet2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/11Xx-swBvbloYRopaQ-ve7EXo6DuZkcHAG6wjcBe-bFU/edit#gid=175657094"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            " Paper Title": "={{ $json['Paper Title'] }}",
+            "Publication Year": "={{ $json['Publication Year'] }}",
+            "DOI": "={{ $json.DOI }}",
+            "Relevance Score": "={{ $json['Relevance Score'] }}",
+            "Paper URL": "={{ $json['Paper URL'] }}",
+            "Authors": "={{ $json.Authors }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": " Paper Title",
+              "displayName": " Paper Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Publication Year",
+              "displayName": "Publication Year",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "DOI",
+              "displayName": "DOI",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Paper URL",
+              "displayName": "Paper URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Relevance Score",
+              "displayName": "Relevance Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Authors",
+              "displayName": "Authors",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1296,
+        0
+      ],
+      "id": "121a320a-7b8e-4550-b4b3-ce2a884039f4",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tLjjI6W5fmapwznG",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "removeItemsSeenInPreviousExecutions",
+        "dedupeValue": "={{ $json.DOI }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        1056,
+        0
+      ],
+      "id": "c8092b29-7445-46d8-9678-48d6a5ca351a",
+      "name": "Remove Duplicates"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "11Xx-swBvbloYRopaQ-ve7EXo6DuZkcHAG6wjcBe-bFU",
+          "mode": "list",
+          "cachedResultName": "AI Research Assistant Database",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/11Xx-swBvbloYRopaQ-ve7EXo6DuZkcHAG6wjcBe-bFU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/11Xx-swBvbloYRopaQ-ve7EXo6DuZkcHAG6wjcBe-bFU/edit#gid=0"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        176,
+        0
+      ],
+      "id": "3d5ba54d-5755-47b8-8ecc-4f99f28d249e",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "Ixw1ET5knaifswtk",
+          "name": "Google Sheets Trigger account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Duplicates": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "2d43a4db-cfb8-438c-980e-0543e56fc23f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0137f43e96cd910131206eac88de83880731c8810dd68103f3f0d09bc4dbd23a"
+  },
+  "nodeGroups": [],
+  "id": "5Z1aFFADBa5q6yej",
+  "tags": []
+}

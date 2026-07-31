@@ -1,0 +1,321 @@
+{
+  "name": "03 - AI Summarization & keyword Extraction",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "11Xx-swBvbloYRopaQ-ve7EXo6DuZkcHAG6wjcBe-bFU",
+          "mode": "list",
+          "cachedResultName": "AI Research Assistant Database",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/11Xx-swBvbloYRopaQ-ve7EXo6DuZkcHAG6wjcBe-bFU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 175657094,
+          "mode": "list",
+          "cachedResultName": "Sheet2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/11Xx-swBvbloYRopaQ-ve7EXo6DuZkcHAG6wjcBe-bFU/edit#gid=175657094"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        32
+      ],
+      "id": "7c40500b-fca1-4c2e-b8cd-c065fa4a312e",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "Ixw1ET5knaifswtk",
+          "name": "Google Sheets Trigger account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=You are a research assistant.\n\nBased only on the following metadata, generate a summary and keywords.\n\nPaper Title:{{ $json[' Paper Title'] }} \nAuthors: {{ $json[\"Authors\"] }}\nPublication Year: {{ $json[\"Publication Year\"] }}\nDOI: {{ $json[\"DOI\"] }}\nPaper URL: {{ $json[\"Paper URL\"] }}\n\nReturn ONLY a valid JSON object in this exact format:\n\n{\n  \"Summary\": \"Write a concise 5-6 line summary.\",\n  \"Keywords\": \"keyword1, keyword2, keyword3, keyword4, keyword5\"\n}\n\nDo not return any explanation, headings, numbering, markdown, or extra text."
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.3,
+      "position": [
+        -32,
+        -64
+      ],
+      "id": "d0f912c7-dfc8-4952-982f-443c16eb29fb",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "1QSWubKFbydG72Oj",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "11Xx-swBvbloYRopaQ-ve7EXo6DuZkcHAG6wjcBe-bFU",
+          "mode": "list",
+          "cachedResultName": "AI Research Assistant Database",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/11Xx-swBvbloYRopaQ-ve7EXo6DuZkcHAG6wjcBe-bFU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 175657094,
+          "mode": "list",
+          "cachedResultName": "Sheet2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/11Xx-swBvbloYRopaQ-ve7EXo6DuZkcHAG6wjcBe-bFU/edit#gid=175657094"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            " Paper Title": "={{ $json[' Paper Title'] }}",
+            "Summary": "={{ $json[\"Summary\"] }}",
+            "Keywords": "={{ $json[\"Keywords\"] }}"
+          },
+          "matchingColumns": [
+            " Paper Title"
+          ],
+          "schema": [
+            {
+              "id": " Paper Title",
+              "displayName": " Paper Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Publication Year",
+              "displayName": "Publication Year",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "DOI",
+              "displayName": "DOI",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Paper URL",
+              "displayName": "Paper URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Relevance Score",
+              "displayName": "Relevance Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Authors",
+              "displayName": "Authors",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Summary",
+              "displayName": "Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Keywords",
+              "displayName": "Keywords",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        640,
+        176
+      ],
+      "id": "8d6277b7-b12f-46da-b935-2b96771edd81",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tLjjI6W5fmapwznG",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const text = $json.output[0].content[0].text.trim();\n\nconst data = JSON.parse( text.replace(/\\\\n/g, \"\")\n                         .replace(/\\\\\"/g, '\"')\n\n);\n\nreturn {\n  json: {\n    ...$json,\n    \"Paper Title\":\n      $input.item.json[\"Paper Title\"],\n    Summary: data.Summary,\n    Keywords: data.Keywords\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        272,
+        -48
+      ],
+      "id": "81f2dad3-7d1d-4cd7-b9b7-307a66eba7e1",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {
+          "clashHandling": {
+            "values": {
+              "resolveClash": "preferInput1"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        288,
+        192
+      ],
+      "id": "053418a2-74e9-4478-8194-8565ad3d4cc6",
+      "name": "Merge",
+      "alwaysOutputData": false
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "f574ff9d-c420-4169-824c-3c7354d25fd5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0137f43e96cd910131206eac88de83880731c8810dd68103f3f0d09bc4dbd23a"
+  },
+  "nodeGroups": [],
+  "id": "mjTJz7Xlwa3NuOpT",
+  "tags": []
+}

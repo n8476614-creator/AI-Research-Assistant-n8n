@@ -1,0 +1,156 @@
+{
+  "name": "01- Research Topic Registration",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "AI Research Assistant",
+        "formDescription": "Enter your details and research topic to find the relevant research paper",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Email",
+              "fieldType": "email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Research Topic",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "respondWithOptions": {
+            "values": {
+              "formSubmittedText": "Research topic registered successfully! Your topic has been saved. The AI Research Assistant will find relevant research papers for you."
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a0631c83-576e-41d4-832f-5c23faceded7",
+      "name": "On form submission",
+      "webhookId": "8d6d6d6f-f325-4811-a51a-a0f176cd17fd"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "11Xx-swBvbloYRopaQ-ve7EXo6DuZkcHAG6wjcBe-bFU",
+          "mode": "list",
+          "cachedResultName": "AI Research Assistant Database",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/11Xx-swBvbloYRopaQ-ve7EXo6DuZkcHAG6wjcBe-bFU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/11Xx-swBvbloYRopaQ-ve7EXo6DuZkcHAG6wjcBe-bFU/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json.Name }}",
+            "Email": "={{ $json.Email }}",
+            "Rsearch topic": "={{ $json['Research Topic'] }}",
+            "Submitted at": "={{ $json.submittedAt }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Rsearch topic",
+              "displayName": "Rsearch topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Submitted at",
+              "displayName": "Submitted at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        224,
+        0
+      ],
+      "id": "2d96e741-2e83-41d3-8594-4812fc0592ef",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tLjjI6W5fmapwznG",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "d5a6246d-8f49-4f90-9c6d-e04fbd092481",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0137f43e96cd910131206eac88de83880731c8810dd68103f3f0d09bc4dbd23a"
+  },
+  "nodeGroups": [],
+  "id": "H1kslWZTg9CWhuLa",
+  "tags": []
+}
