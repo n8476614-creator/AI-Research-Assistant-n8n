@@ -47,7 +47,9 @@ The objectives of this project are:
 
 
 # 🏗️ System Architecture
-'''text
+
+
+```text
 User
    │
    ▼
@@ -84,7 +86,7 @@ Error Logging & Email Alert
         │
         ├── Google Sheets (Error Log)
         └── Gmail (Failure Notification)
-'''
+```
 
 # 🔄 Workflow Description
 
@@ -165,7 +167,7 @@ Monitors workflow failures using the Error Trigger. Whenever any workflow encoun
 
 # 📂 Repository Contents
 
-''' text
+```text
 AI-Research-Assistant-n8n
 │
 ├── 01-Research Topic Registration.json
@@ -178,7 +180,7 @@ AI-Research-Assistant-n8n
 ├── Project_Report.pdf
 ├── Architecture_Diagram.png
 └── Presentation.pptx
-'''
+```
 
 
 # ▶️ How to Run the Project
