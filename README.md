@@ -40,6 +40,7 @@ The objectives of this project are:
 - ✅ Automatic Keyword Extraction
 - ✅ Google Docs Repository Creation
 - ✅ Weekly Research Digest Email
+- ✅ Error Logging & Email Alerts
 - ✅ Scheduled Workflow Execution
 - ✅ Google Sheets Database Integration
 - ✅ AI Automation using OpenAI
@@ -47,7 +48,6 @@ The objectives of this project are:
 
 # 🏗️ System Architecture
 
-```text
 User
    │
    ▼
@@ -75,7 +75,16 @@ Weekly Research Digest & Notifications
    │
    ▼
 Gmail
-```
+
+If Any Workflow Fails
+        │
+        ▼
+Workflow 6
+Error Logging & Email Alert
+        │
+        ├── Google Sheets (Error Log)
+        └── Gmail (Failure Notification)
+        
 
 # 🔄 Workflow Description
 
@@ -143,10 +152,20 @@ Generates a weekly digest from all research papers and emails the digest automat
 - Workflow Automation
 
 ---
+## Workflow 6 – Error Logging & Email Alert
+
+Monitors workflow failures using the Error Trigger. Whenever any workflow encounters an error, it automatically records the failure in Google Sheets and sends an email notification to the user.
+
+### Technologies Used
+
+- n8n Error Trigger
+- Google Sheets
+- Gmail
+
 
 # 📂 Repository Contents
 
-```text
+''' text
 AI-Research-Assistant-n8n
 │
 ├── 01-Research Topic Registration.json
@@ -154,21 +173,12 @@ AI-Research-Assistant-n8n
 ├── 03-AI Summarization & Keyword Extraction.json
 ├── 04-Reference Management & Repository.json
 ├── 05-Weekly Research Digest & Notifications.json
+├── 06-Error Logging & Email Alert.json
 ├── README.md
 ├── Project_Report.pdf
 ├── Architecture_Diagram.png
-├── Presentation.pptx
-└── screenshots
-    ├── workflow1.png
-    ├── workflow2.png
-    ├── workflow3.png
-    ├── workflow4.png
-    ├── workflow5.png
-    ├── google-sheets.png
-    ├── google-docs.png
-    └── weekly-email.png
-```
-
+└── Presentation.pptx
+'''
 
 
 # ▶️ How to Run the Project
@@ -190,6 +200,8 @@ The project automatically:
 - Extracts keywords
 - Creates a Google Docs repository
 - Sends a weekly research digest email
+- Automatically logs workflow errors
+- Sends email alerts whenever a workflow fails
 
 
 # ⭐ Advanced Features
@@ -199,6 +211,8 @@ The project automatically:
 - Scheduled workflows (Cron)
 - Automated document creation
 - Automated email notifications
+- Centralized research repository
+- Email alerts for workflow failures
 - Centralized research repository
 
 
