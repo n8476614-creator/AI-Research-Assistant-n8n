@@ -47,7 +47,7 @@ The objectives of this project are:
 
 
 # 🏗️ System Architecture
-
+'''text
 User
    │
    ▼
@@ -84,7 +84,7 @@ Error Logging & Email Alert
         │
         ├── Google Sheets (Error Log)
         └── Gmail (Failure Notification)
-        
+'''
 
 # 🔄 Workflow Description
 
