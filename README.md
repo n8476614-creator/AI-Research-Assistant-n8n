@@ -179,33 +179,33 @@ AI-Research-Assistant-n8n
 ├── Architecture_Diagram.png
 ├── Presentation.pptx
 └── screenshots/
-    ├── Workflow1.png
-    ├── Workflow2.png
-    ├── Workflow3.png
-    ├── Workflow4.png
-    ├── Workflow5.png
-    └── Workflow6.png
+    ├── Workflow1.jpeg
+    ├── Workflow2.jpeg
+    ├── Workflow3.jpeg
+    ├── Workflow4.jpeg
+    ├── Workflow5.jpeg
+    └── Workflow6.jpeg
 ```
 
 # 📸 Workflow Screenshots
 
 ### Workflow 1 – Research Topic Registration
-![Workflow 1](screenshots/Workflow1.png)
+![Workflow 1](screenshots/Workflow1.jpeg)
 
 ### Workflow 2 – Research Paper Search & Collection
-![Workflow 2](screenshots/Workflow2.png)
+![Workflow 2](screenshots/Workflow2.jpeg)
 
 ### Workflow 3 – AI Summarization & Keyword Extraction
-![Workflow 3](screenshots/Workflow3.png)
+![Workflow 3](screenshots/Workflow3.jpeg)
 
 ### Workflow 4 – Reference Management & Repository
-![Workflow 4](screenshots/Workflow4.png)
+![Workflow 4](screenshots/Workflow4.jpeg)
 
 ### Workflow 5 – Weekly Research Digest & Notifications
-![Workflow 5](screenshots/Workflow5.png)
+![Workflow 5](screenshots/Workflow5.jpeg)
 
 ### Workflow 6 – Error Logging & Email Alert
-![Workflow 6](screenshots/Workflow6.png)
+![Workflow 6](screenshots/Workflow6.jpeg)
 
 
 # ▶️ How to Run the Project
