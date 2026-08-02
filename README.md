@@ -164,7 +164,6 @@ Monitors workflow failures using the Error Trigger. Whenever any workflow encoun
 
 
 # 📂 Repository Contents
-# 📂 Repository Contents
 
 ```text
 AI-Research-Assistant-n8n/
