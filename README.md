@@ -164,9 +164,10 @@ Monitors workflow failures using the Error Trigger. Whenever any workflow encoun
 
 
 # 📂 Repository Contents
+# 📂 Repository Contents
 
 ```text
-AI-Research-Assistant-n8n
+AI-Research-Assistant-n8n/
 │
 ├── 01-Research Topic Registration.json
 ├── 02-Research Paper Search & Collection.json
@@ -175,18 +176,20 @@ AI-Research-Assistant-n8n
 ├── 05-Weekly Research Digest & Notifications.json
 ├── 06-Error Logging & Email Alert.json
 ├── README.md
-├── Project_Report.pdf
-├── Architecture_Diagram.png
+├── Workflow_Documentation.pdf
+├── Demo_Video.mp4
 ├── Presentation.pptx
+│
 └── screenshots/
     ├── Workflow1.jpeg
     ├── Workflow2.jpeg
     ├── Workflow3.jpeg
     ├── Workflow4.jpeg
     ├── Workflow5.jpeg
-    └── Workflow6.jpeg
+    ├── Workflow6.jpeg
+    ├── Architecture_Diagram.jpeg
+    └── Workflow_Architecture.jpeg
 ```
-
 # 📸 Workflow Screenshots
 
 ### Workflow 1 – Research Topic Registration
