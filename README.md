@@ -177,7 +177,7 @@ AI-Research-Assistant-n8n/
 ├── README.md
 ├── Workflow_Documentation.pdf
 ├── Demo_Video.mp4
-├── Presentation.pptx
+├── AI Research-Assistant-platform.pptx
 │
 └── screenshots/
     ├── Workflow1.jpeg
